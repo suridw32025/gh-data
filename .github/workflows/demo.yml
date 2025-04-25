@@ -29,12 +29,17 @@ jobs:
         uses: actions/upload-artifact@v4
         with: 
           name: dist-filses
-          path: |
-            dist
-            package.json
+          path : dist
+          # path: |
+          #   dist
+          #   package.json
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    steps:
+    steps: 
+      - name: get build artifacts
+        uses: actions/download-artifact@v4
+        with: 
+          name:  dist-filses
       - name: Deploy
         run: echo "Deploying..."
